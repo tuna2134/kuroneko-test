@@ -8,12 +8,16 @@ interface Props {
 
 
 export default function Home({ name, id }: Props) {
-    return <p>{`${name}(${id})`}</p>
+    return (
+        <>
+            <p>{`${name}(${id})`}</p>
+        </>
+    )
 }
 
 export async function getServerSideProps() {
-    const user = await (await axios.get('/api/data')).data
+    const res = await axios.get('http://localhost:3000/api/data')
     return {
-        props: user
+        props: res.data
     }
 }
